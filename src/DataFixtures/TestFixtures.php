@@ -326,6 +326,34 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         $this->manager->flush();
 
+        //données dynamiques
+
+        for ($i = 0; $i < 10; $i++) {
+            $user = new User();
+            $user->setEmail($this->faker->unique()->safeEmail());
+            $password = $this->hasher->hashPassword($user, '123');
+            $user->setPassword($password);
+            $user->setRoles(['ROLE_USER']);
+
+            $user->setEnabled($this->faker->boolean());
+
+            $this->manager->persist($user);
+
+            $emprunteur = new Emprunteur();
+            $emprunteur->setNom($this->faker->lastName());
+            $emprunteur->setPrenom($this->faker->firstName());
+            $emprunteur->setTel($this->faker->phoneNumber());
+
+            $emprunteur->setUser($user);
+
+            $this->manager->persist($emprunteur);
+
+           
+
+        }
+        $this->manager->flush();
+
+
     }
 
     public function loadEmprunts(): void
