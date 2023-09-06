@@ -77,10 +77,10 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         //donnée dynamiques
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $auteur = new Auteur();
-            $auteur->setNom($this->faker->unique()->lastName());
-            $auteur->setPrenom($this->faker->unique()->firstName());
+            $auteur->setNom($this->faker->lastName());
+            $auteur->setPrenom($this->faker->firstName());
 
             $this->manager->persist($auteur);
           
@@ -236,7 +236,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         //données dynamiques
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
             $livre = new Livre();
 
             $words = random_int(2, 5);
@@ -328,7 +328,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         //données dynamiques
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 100; $i++) {
             $user = new User();
             $user->setEmail($this->faker->unique()->safeEmail());
             $password = $this->hasher->hashPassword($user, '123');
@@ -409,7 +409,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
 
         //données dynamiques
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 200; $i++) {
             $emprunt = new Emprunt();
 
             $dateEmprunt = $this->faker->dateTimeBetween('-1 year', '-6 months');
