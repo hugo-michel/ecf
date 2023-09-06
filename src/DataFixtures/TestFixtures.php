@@ -76,6 +76,21 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         }
 
         $this->manager->flush();
+
+        //donnée dynamiques
+
+        for ($i = 0; $i < 10; $i++) {
+            $auteur = new Auteur();
+            $auteur->setNom($this->faker->unique()->lastName());
+            $auteur->setPrenom($this->faker->unique()->firstName());
+
+            $this->manager->persist($auteur);
+          
+        }
+
+        $this->manager->flush();
+
+
     }
 
     public function loadGenres(): void
