@@ -4,8 +4,38 @@
 
 {% block body %}
 
+<h2> liste des livres, trié par email alphabetique </h2>
 
+{% for livre in livres %}
+<p> {{ livre.titre }} </p>
+{% endfor %}
 
+<h2> data du livre ayant l'id 1 </h2>
+
+<p> titre : {{ livre1.titre }} </p>
+<p> annee edition : {{ livre1.anneeEdition }} </p>
+<p> nb pages : {{ livre1.nombrePages }} </p>
+<p> code isbn : {{ livre1.codeIsbn }} </p>
+<p> auteur : {{ livre1.auteur.nom }} {{ livre1.auteur.prenom }} </p>
+
+<h2> liste des livres ayant 'lorem' dans le titre </h2>
+
+{% for livre in livreLorem %}
+<p> {{ livre.titre }} </p>
+{% endfor %}
+
+<h2> liste des livres dont l'auteur id est 2 </h2>
+
+{% for livre in listeLivreIdAuth2 %}
+<p> {{ livre.titre }} </p>
+
+{% endfor %}
+
+<h2> liste des livres dont le genre contient 'roman'</h2>
+
+{% for livre in listeLivreGenreRoman %}
+<p> {{ livre.titre }} </p>
+{% endfor %}
 
 
 {% endblock %}

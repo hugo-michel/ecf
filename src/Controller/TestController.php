@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Livre;
 use App\Entity\User;
+use App\Entity\Auteur;
+use App\Entity\Genre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\Repository\RepositoryFactory;
 use Doctrine\Persistence\ManagerRegistry;
@@ -48,18 +51,46 @@ class TestController extends AbstractController
         ]);
     }
 
-    
+
 
     #[Route('/livre', name: 'app_test_livre')]
     public function livre(ManagerRegistry $doctrine): Response
     {
-        
+        $em = $doctrine->getManager();
+        $repositoryLivre = $em->getRepository(Livre::class);
+
+
+        //liste de tous les livres, classé par ordre alphabetique
+        $livres = $repositoryLivre->findAllLivreOrderByName();
+
+        //trouve les datas du livre ayant l'id 1
+        $livre1 = $repositoryLivre->find(1);
+
+        //trouve la liste des livres contenant dans le titre lorem
+        $livreLorem = $repositoryLivre->findBookByKeyword('lorem');
+
+        //liste des livres dont l'auteur a l'id 2
+        $listeLivreIdAuth2 = $repositoryLivre->findBy([
+            'auteur' => 2,
+        ], [
+            'titre' => 'ASC',
+        ]);
+
+        //liste des livres dont le genre contient le mot "roman"
+        $listeLivreGenreRoman = $repositoryLivre->findBooksByGenre("roman");
+       
+
         $title = "test des livres";
 
 
         return $this->render('test/livre.html.twig', [
             'controller_name' => 'TestController',
             'title' => $title,
+            'livres' => $livres,
+            'livre1' => $livre1,
+            'livreLorem' => $livreLorem,
+            'listeLivreIdAuth2' => $listeLivreIdAuth2,
+            'listeLivreGenreRoman' => $listeLivreGenreRoman,
         ]);
     }
 }
