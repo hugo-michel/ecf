@@ -17,10 +17,22 @@ class TestController extends AbstractController
     public function user(ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
-        $repository = $em->getRepository(User::class);
+        $repositoryUser = $em->getRepository(User::class);
 
         //fonction all user order by email
-        $users = $repository->findAllUsersOrderByMail();
+        $users = $repositoryUser->findAllUsersOrderByMail();
+
+        //trouve les datas de l'utilisateur 1
+        $user1 = $repositoryUser->find(1);
+
+        //trouve user dont email est foo.foo@example.com
+        $userFooFoo = $repositoryUser->findByEmail("foo.foo@example.com");
+
+        //trouver tous les user dont le role est ROLE_USER
+        $roleUser = $repositoryUser->allRoleUser();
+
+        //trouver tous les users inactifs, triés par email
+        $userInactifs = $repositoryUser->falseEnabled();
 
         $title = "test des users";
 
@@ -29,6 +41,25 @@ class TestController extends AbstractController
             'controller_name' => 'TestController',
             'title' => $title,
             'users' => $users,
+            'user1' => $user1,
+            'userFooFoo' => $userFooFoo,
+            'roleUser' => $roleUser,
+            'userInactifs' => $userInactifs,
+        ]);
+    }
+
+    
+
+    #[Route('/livre', name: 'app_test_livre')]
+    public function livre(ManagerRegistry $doctrine): Response
+    {
+        
+        $title = "test des livres";
+
+
+        return $this->render('test/livre.html.twig', [
+            'controller_name' => 'TestController',
+            'title' => $title,
         ]);
     }
 }
