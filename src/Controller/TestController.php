@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use App\Entity\Livre;
 use App\Entity\User;
 use App\Entity\Auteur;
@@ -152,6 +153,9 @@ class TestController extends AbstractController
 
         // la liste des emprunteurs dont la date de création est antérieure au 01/03/2021 exclu 
         //(c-à-d strictement plus petit), triée par ordre alphabétique de nom et prénom
+        $date = new DateTime('2021-03-01');
+        $emprunteursBeforeDate = $repositoryEmprunteur->findEmprunteurByDateCreatedAt($date);
+
 
         $title = "test des emprunteurs";
 
@@ -164,6 +168,7 @@ class TestController extends AbstractController
             'user3' => $user3,
             'emprunteurFooFoo' => $emprunteurFooFoo,
             'emprunteur1234' => $emprunteur1234,
+            'emprunteursBeforeDate' => $emprunteursBeforeDate,
         ]);
     }
 }

@@ -44,5 +44,11 @@
 
 <h2> la liste des emprunteurs dont la date de création est antérieure au 01/03/2021 exclu (c-à-d strictement plus petit), triée par ordre alphabétique de nom et prénom</h2>
 
+{% for emprunteur in emprunteursBeforeDate %}
+
+<p> nom : {{ emprunteur.nom }} , prenom : {{ emprunteur.prenom }} </p>
+
+{% endfor %}
+
 
 {% endblock %}
