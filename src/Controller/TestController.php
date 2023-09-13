@@ -58,6 +58,9 @@ class TestController extends AbstractController
     {
         $em = $doctrine->getManager();
         $repositoryLivre = $em->getRepository(Livre::class);
+        $repositoryAuteur = $em->getRepository(Auteur::class);
+        $repositoryGenre = $em->getRepository(Genre::class);
+
 
 
         //liste de tous les livres, classé par ordre alphabetique
@@ -78,9 +81,37 @@ class TestController extends AbstractController
 
         //liste des livres dont le genre contient le mot "roman"
         $listeLivreGenreRoman = $repositoryLivre->findBooksByGenre("roman");
-       
 
         $title = "test des livres";
+
+        //création d'un nouveau livre
+        $newLivre = new Livre();
+        $newLivre->setTitre('Totum autem id externum');
+        $newLivre->setAnneeEdition(2020);
+        $newLivre->setNombrePages(300);
+        $newLivre->setCodeIsbn(9790412882714);
+        $auteur2 = $repositoryAuteur->find(2);
+        $newLivre->setAuteur($auteur2);
+        $genre6 = $repositoryGenre->find(6);
+        $newLivre->addGenre($genre6);
+        $em->persist($newLivre);
+        $em->flush();
+
+        //modification d'un livre existant id2
+        $livre2 = $repositoryLivre->find(2);
+        $livre2->setTitre('Aperiendum est igitur');
+        $genre5 = $repositoryGenre->find(5);
+        $livre2->addGenre($genre5);
+        $em->flush();
+
+        //suppression du livre ac id 123
+        $livre123 = $repositoryLivre->find(123);
+
+        if($livre123) {
+            $em->remove($livre123);
+            $em->flush();
+        }
+
 
 
         return $this->render('test/livre.html.twig', [
