@@ -21,28 +21,91 @@ class EmpruntRepository extends ServiceEntityRepository
         parent::__construct($registry, Emprunt::class);
     }
 
-//    /**
-//     * @return Emprunt[] Returns an array of Emprunt objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Emprunt[] Returns an array of Emprunt objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('e')
+    //            ->andWhere('e.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('e.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Emprunt
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Emprunt
+    //    {
+    //        return $this->createQueryBuilder('e')
+    //            ->andWhere('e.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
+
+
+    /**
+     * @param Value $value The number of emprunts to search for
+     * @return Emprunt[] Returns an array of Emprunt objects
+     */
+    public function findLastEmprunt($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.dateEmprunt', 'DESC')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+     /**
+     * @param Value $value The value of emprunteurId to search for
+     * @return Emprunt[] Returns an array of Emprunt objects
+     */
+    public function findEmpruntByEmprunteurId($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e')
+            ->where('e.emprunteur = :value')
+            ->setParameter('value', $value)
+            ->orderBy('e.dateEmprunt', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+      /**
+     * @param Value $value The value of LivreId to search for
+     * @return Emprunt[] Returns an array of Emprunt objects
+     */
+    public function findEmpruntByLivreId($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e')
+            ->where('e.livre = :value')
+            ->setParameter('value', $value)
+            ->orderBy('e.dateEmprunt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+     /**
+     * @param Value $value The number of emprunts to search for
+     * @return Emprunt[] Returns an array of Emprunt objects
+     */
+    public function findLastEmpruntRetour($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e')
+            ->where('e.dateRetour IS NOT null')
+            ->orderBy('e.dateRetour', 'DESC')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
 }

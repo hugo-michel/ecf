@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Livre;
 use App\Entity\User;
 use App\Entity\Auteur;
+use App\Entity\Emprunt;
 use App\Entity\Emprunteur;
 use App\Entity\Genre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -169,6 +170,43 @@ class TestController extends AbstractController
             'emprunteurFooFoo' => $emprunteurFooFoo,
             'emprunteur1234' => $emprunteur1234,
             'emprunteursBeforeDate' => $emprunteursBeforeDate,
+        ]);
+    }
+
+    #[Route('/emprunt', name: 'emprunt')]
+    public function emprunt(ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $repositoryEmprunt = $em->getRepository(Emprunt::class);
+        
+        // la liste des 10 derniers emprunts au niveau chronologique,
+        // triée par ordre **décroissant** de date d'emprunt
+        $listeLast10Emprunt = $repositoryEmprunt->findLastEmprunt(10);
+
+        //la liste des emprunts de l'emprunteur dont l'id est `2`, 
+        //triée par ordre **croissant** de date d'emprunt (le plus ancien en premier)
+        $empruntId2 = $repositoryEmprunt->findEmpruntByEmprunteurId(2);
+
+        //la liste des emprunts du livre dont l'id est `3`, 
+        //triée par ordre **décroissant** de date d'emprunt (le plus récent en premier)
+        $empruntLivreId3 = $repositoryEmprunt->findEmpruntByLivreId(3);
+
+        //la liste des 10 derniers emprunts qui ont été retournés, 
+        //triée par ordre **décroissant** de date de rendretour (le plus récent en premier)
+        $ListeLast10RetourEmprunt = $repositoryEmprunt->findLastEmpruntRetour(10);
+
+        
+
+
+        $title = "test des emprunts";
+
+        return $this->render('test/emprunt.html.twig', [
+            'controller_name' => 'TestController',
+            'title' => $title,   
+            'listeLast10Emprunt' => $listeLast10Emprunt,  
+            'empruntId2' => $empruntId2,   
+            'empruntLivreId3' => $empruntLivreId3,
+            'ListeLast10RetourEmprunt' => $ListeLast10RetourEmprunt,
         ]);
     }
 }

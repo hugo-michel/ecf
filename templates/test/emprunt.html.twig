@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<h2> la liste des 10 derniers emprunts au niveau chronologique, triée par ordre **décroissant** de date d'emprunt</h2>
+
+{% for emprunt in listeLast10Emprunt %}
+
+<p> id : {{emprunt.id}}, date emprunt :  {{emprunt.dateEmprunt|date('d/m/Y')}} </p>
+
+{% endfor %}
+
+<h2>la liste des emprunts de l'emprunteur dont l'id est `2`, triée par ordre **croissant** de date d'emprunt (le plus ancien en premier)</h2>
+
+{% for emprunt in empruntId2 %}
+
+<p> id emprunt : {{emprunt.id}}, date emprunt :  {{emprunt.dateEmprunt|date('d/m/Y')}} </p>
+
+{% endfor %}
+
+<h2>la liste des emprunts du livre dont l'id est `3`, triée par ordre **décroissant** de date d'emprunt (le plus récent en premier)</h2>
+
+{% for emprunt in empruntLivreId3 %}
+
+<p> id emprunt : {{emprunt.id}}, date emprunt :  {{emprunt.dateEmprunt|date('d/m/Y')}} </p>
+
+{% endfor %}
+
+<h2>la liste des 10 derniers emprunts qui ont été retournés, triée par ordre **décroissant** de date de rendretour (le plus récent en premier)</h2>
+
+{% for emprunt in ListeLast10RetourEmprunt %}
+
+<p> id emprunt : {{emprunt.id}}, date retour :  {{emprunt.dateRetour|date('d/m/Y')}} </p>
+
+{% endfor %}
+
+{% endblock %}
