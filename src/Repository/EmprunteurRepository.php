@@ -45,4 +45,66 @@ class EmprunteurRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+// /**
+//      * @return Emprunteur[] Returns an array of User objects
+//      */
+//     public function findAllEmprunteurOrderByNameAndFirstName(): array
+//     {
+//         return $this->createQueryBuilder('e')
+//             ->andWhere('e.nom IS NOT null')
+//             ->orderBy('e.prenom', 'ASC')
+//             ->orderBy('e.nom', 'ASC')
+//             ->getQuery()
+//             ->getResult();
+//     }
+
+/**
+     * @return Emprunteur[] Returns an array of User objects
+     */
+    public function findAllEmprunteurOrderByNameAndFirstName(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e')
+            ->orderBy('e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * This method finds all Emprunteur containing a keyword anywhere in the name or firstname
+     * @param string $keyword The keyword to search for
+     * @return Emprunteur[] Returns an array of Emprunteur objects
+     */
+    public function findEmprunteurByKeyword(string $keyword): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.nom LIKE :keyword')
+            ->orWhere('e.prenom LIKE :keyword')
+            ->setParameter('keyword', "%$keyword%")
+            ->orderBy('e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+     /**
+     * This method finds all Emprunteur containing a keyword anywhere in the tel number
+     * @param string $keyword The keyword to search for
+     * @return Emprunteur[] Returns an array of Emprunteur objects
+     */
+    public function findEmprunteurByKeywordInTel(string $keyword): array
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.tel LIKE :keyword')
+            ->setParameter('keyword', "%$keyword%")
+            ->orderBy('e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 }

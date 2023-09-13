@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block body %}
+
+<h2> Liste de tous les empruinteurs triés par nom et prenom </h2>
+
+{% for emprunteur in emprunteurs %}
+
+<p> nom : {{ emprunteur.nom }} prenom : {{ emprunteur.prenom }} </p>
+
+{% endfor %}
+
+<h2> données de l'emprunteur 3 </h2>
+
+<p> nom : {{ emprunteur3.nom }}</p>
+<p> prenom :  {{ emprunteur3.prenom }}</p>
+<p> tel :  {{ emprunteur3.tel }}</p>
+<p> mail :  {{ emprunteur3.user.email }}</p>
+
+<h2>les données de l'emprunteur qui est relié au user dont l'id est 3</h2>
+
+<p> nom : {{ user3.emprunteur.nom }} </p>
+<p> prenom : {{ user3.emprunteur.prenom }} </p>
+<p> tel : {{ user3.emprunteur.tel }} </p>
+<p> email : {{ user3.email }} </p>
+
+<h2>la liste des emprunteurs dont le nom ou le prénom contient le mot clé `foo`, triée par ordre alphabétique de nom et prénom</h2>
+
+{% for emprunteur in emprunteurFooFoo %}
+
+<p> nom : {{ emprunteur.nom }} , prenom : {{ emprunteur.prenom }} </p>
+
+{% endfor %}
+
+<h2>la liste des emprunteurs dont le téléphone contient le mot clé `1234`, triée par ordre alphabétique de nom et prénom</h2>
+
+{% for emprunteur in emprunteur1234 %}
+
+<p> nom : {{ emprunteur.nom }} , prenom : {{ emprunteur.prenom }} </p>
+
+{% endfor %}
+
+<h2> la liste des emprunteurs dont la date de création est antérieure au 01/03/2021 exclu (c-à-d strictement plus petit), triée par ordre alphabétique de nom et prénom</h2>
+
+
+{% endblock %}

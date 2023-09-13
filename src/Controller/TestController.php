@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Livre;
 use App\Entity\User;
 use App\Entity\Auteur;
+use App\Entity\Emprunteur;
 use App\Entity\Genre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\Repository\RepositoryFactory;
@@ -112,8 +113,6 @@ class TestController extends AbstractController
             $em->flush();
         }
 
-
-
         return $this->render('test/livre.html.twig', [
             'controller_name' => 'TestController',
             'title' => $title,
@@ -122,6 +121,49 @@ class TestController extends AbstractController
             'livreLorem' => $livreLorem,
             'listeLivreIdAuth2' => $listeLivreIdAuth2,
             'listeLivreGenreRoman' => $listeLivreGenreRoman,
+        ]);
+    }
+
+
+    #[Route('/emprunteur', name: 'app_test_emprunteur')]
+    public function emprunteur(ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $repositoryEmprunteur = $em->getRepository(Emprunteur::class);
+        $repositoryUser = $em->getRepository(User::class);
+
+
+        //liste des emprunteurs, triés par nom et prenom
+        $emprunteurs = $repositoryEmprunteur->findAllEmprunteurOrderByNameAndFirstName();
+
+        //données de l'emprunteur id 3
+        $emprunteur3 = $repositoryEmprunteur->find(3);
+
+        //les données de l'emprunteur qui sont reliées au user dont l'id est `3
+        $user3 = $repositoryUser->find(3);
+
+        //la liste des emprunteurs dont le nom ou le prénom contient le mot clé `foo`, 
+        //triée par ordre alphabétique de nom et prénom
+        $emprunteurFooFoo = $repositoryEmprunteur->findEmprunteurByKeyword("foo");
+
+        //la liste des emprunteurs dont le téléphone contient le mot clé `1234`, 
+        //triée par ordre alphabétique de nom et prénom
+        $emprunteur1234 = $repositoryEmprunteur->findEmprunteurByKeywordInTel("1234");
+
+        // la liste des emprunteurs dont la date de création est antérieure au 01/03/2021 exclu 
+        //(c-à-d strictement plus petit), triée par ordre alphabétique de nom et prénom
+
+        $title = "test des emprunteurs";
+
+
+        return $this->render('test/emprunteur.html.twig', [
+            'controller_name' => 'TestController',
+            'title' => $title,
+            'emprunteurs' => $emprunteurs,
+            'emprunteur3' => $emprunteur3,
+            'user3' => $user3,
+            'emprunteurFooFoo' => $emprunteurFooFoo,
+            'emprunteur1234' => $emprunteur1234,
         ]);
     }
 }
