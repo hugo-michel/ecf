@@ -38,7 +38,7 @@
 
 {% for emprunteur in emprunteur1234 %}
 
-<p> nom : {{ emprunteur.nom }} , prenom : {{ emprunteur.prenom }} </p>
+<p> nom : {{ emprunteur.nom }} , prenom : {{ emprunteur.prenom }} , tel : {{ emprunteur.tel }} </p>
 
 {% endfor %}
 
@@ -46,7 +46,7 @@
 
 {% for emprunteur in emprunteursBeforeDate %}
 
-<p> nom : {{ emprunteur.nom }} , prenom : {{ emprunteur.prenom }} </p>
+<p> nom : {{ emprunteur.nom }} , prenom : {{ emprunteur.prenom }} , date de creation : {{ emprunteur.createdAt|date("d/m/Y") }} </p>
 
 {% endfor %}
 
