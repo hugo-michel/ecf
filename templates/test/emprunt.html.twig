@@ -16,7 +16,7 @@
 
 {% for emprunt in empruntId2 %}
 
-<p> id emprunt : {{emprunt.id}}, date emprunt :  {{emprunt.dateEmprunt|date('d/m/Y')}} </p>
+<p> id emprunt : {{emprunt.id}}, livre : {{ emprunt.livre.titre }}, date emprunt : {{emprunt.dateEmprunt|date('d/m/Y')}}, date retour : {% if emprunt.dateRetour %}{{emprunt.dateRetour|date('d/m/Y')}}{% endif %} </p>
 
 {% endfor %}
 
@@ -24,7 +24,7 @@
 
 {% for emprunt in empruntLivreId3 %}
 
-<p> id emprunt : {{emprunt.id}}, date emprunt :  {{emprunt.dateEmprunt|date('d/m/Y')}} </p>
+<p> id emprunt : {{emprunt.id}}, date emprunt : {{emprunt.dateEmprunt|date('d/m/Y')}}, date retour : {% if emprunt.dateRetour %}{{emprunt.dateRetour|date('d/m/Y')}}{% endif %}, emprunteur : {{ emprunt.emprunteur.prenom }} {{ emprunt.emprunteur.nom }} </p>
 
 {% endfor %}
 
@@ -32,7 +32,7 @@
 
 {% for emprunt in ListeLast10RetourEmprunt %}
 
-<p> id emprunt : {{emprunt.id}}, date retour :  {{emprunt.dateRetour|date('d/m/Y')}} </p>
+<p> id emprunt : {{emprunt.id}}, date retour : {{emprunt.dateRetour|date('d/m/Y')}}, emprunteur : {{ emprunt.emprunteur.prenom }} {{ emprunt.emprunteur.nom }}, livre : {{ emprunt.livre.titre }} </p>
 
 {% endfor %}
 
@@ -40,7 +40,7 @@
 
 {% for emprunt in listeEmpruntNoReturnDate %}
 
-<p> id emprunt : {{emprunt.id}}, date retour :  {{emprunt.dateEmprunt|date('d/m/Y')}} </p>
+<p> id emprunt : {{emprunt.id}}, date emprunt : {{emprunt.dateEmprunt|date('d/m/Y')}}, livre : {{ emprunt.livre.titre }}, emprunteur : {{ emprunt.emprunteur.prenom }} {{ emprunt.emprunteur.nom }} </p>
 
 {% endfor %}
 
@@ -48,8 +48,7 @@
 
 {% for emprunt in dataEmpruntLivreId3 %}
 
-
-<p> id de l'emprunt : {{ emprunt.id }} , date emprunt : {{emprunt.dateEmprunt|date('d/m/Y')}} , date retour : {% if emprunt.dateRetour %}{{emprunt.dateRetour|date('d/m/Y')}}{% endif %} , emprunteur : {{emprunt.emprunteur.nom}} {{emprunt.emprunteur.prenom}}</p>
+<p> id de l'emprunt : {{ emprunt.id }}, livre : {{ emprunt.livre.titre }} , date emprunt : {{emprunt.dateEmprunt|date('d/m/Y')}} , date retour : {% if emprunt.dateRetour %}{{emprunt.dateRetour|date('d/m/Y')}}{% endif %} , emprunteur : {{emprunt.emprunteur.nom}} {{emprunt.emprunteur.prenom}}</p>
 
 {% endfor %}
 

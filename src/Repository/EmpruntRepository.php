@@ -21,33 +21,8 @@ class EmpruntRepository extends ServiceEntityRepository
         parent::__construct($registry, Emprunt::class);
     }
 
-    //    /**
-    //     * @return Emprunt[] Returns an array of Emprunt objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('e.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Emprunt
-    //    {
-    //        return $this->createQueryBuilder('e')
-    //            ->andWhere('e.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
-
-
     /**
+     * this method returns the last X emprunt
      * @param Value $value The number of emprunts to search for
      * @return Emprunt[] Returns an array of Emprunt objects
      */
@@ -60,8 +35,8 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-     /**
+    /**
+     * this method returns all emprunts done by a specific emprunteurID
      * @param Value $value The value of emprunteurId to search for
      * @return Emprunt[] Returns an array of Emprunt objects
      */
@@ -76,7 +51,8 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-      /**
+    /**
+     * this method return all emprunt for a specific livreID
      * @param Value $value The value of LivreId to search for
      * @return Emprunt[] Returns an array of Emprunt objects
      */
@@ -91,7 +67,8 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-     /**
+    /**
+     * this method returns the last X emprunt with a return Date
      * @param Value $value The number of emprunts to search for
      * @return Emprunt[] Returns an array of Emprunt objects
      */
@@ -106,13 +83,12 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-     /**
+    /**
      * This method finds all Emprunt with no return date
      * @return Emprunteur[] Returns an array of Emprunt objects
      */
     public function findAllNonReturnEmprunt(): array
     {
-        
         return $this->createQueryBuilder('e')
             ->select('e')
             ->Where('e.dateRetour IS null')
@@ -121,7 +97,8 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-          /**
+    /**
+     * this method returns an emprunt search by a book ID
      * @param Value $value The value of LivreId to search for
      * @return Emprunt[] Returns an array of Emprunt objects
      */
@@ -134,7 +111,4 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
-
 }

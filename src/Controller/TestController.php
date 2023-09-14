@@ -217,8 +217,6 @@ class TestController extends AbstractController
             $em->flush();
         }        
         
-
-
         $title = "test des emprunts";
 
         return $this->render('test/emprunt.html.twig', [
