@@ -52,8 +52,6 @@ class TestController extends AbstractController
         ]);
     }
 
-
-
     #[Route('/livre', name: 'app_test_livre')]
     public function livre(ManagerRegistry $doctrine): Response
     {
@@ -61,8 +59,6 @@ class TestController extends AbstractController
         $repositoryLivre = $em->getRepository(Livre::class);
         $repositoryAuteur = $em->getRepository(Auteur::class);
         $repositoryGenre = $em->getRepository(Genre::class);
-
-
 
         //liste de tous les livres, classé par ordre alphabetique
         $livres = $repositoryLivre->findAllLivreOrderByName();

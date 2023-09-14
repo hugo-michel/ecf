@@ -47,19 +47,20 @@ class LivreRepository extends ServiceEntityRepository
     //    }
 
     /**
-     * @return livre[] Returns an array of User objects
+     * This method find all books ordered by book's title
+     * @return livre[] Returns an array of Livre objects
      */
     public function findAllLivreOrderByName(): array
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.titre IS NOT null')
+            ->select('l')
             ->orderBy('l.titre', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * This method finds all books containing a keyword anywhere in the book name
+     * This method finds all books containing a keyword anywhere in the book's title, ordered by title
      * @param string $keyword The keyword to search for
      * @return Livre[] Returns an array of Livre objects
      */
@@ -94,8 +95,8 @@ class LivreRepository extends ServiceEntityRepository
     // ORDER BY `livre`.`titre` ASC
 
     /**
-     * This method finds all books containing a keyword anywhere in the book genres
-     * @param string $keyword The keyword to search for
+     * This method finds all books containing a keyword anywhere in the book genres ordered by title
+     * @param string $genres The keyword to search for
      * @return Livre[] Returns an array of Livre objects
      */
     public function findBooksByGenre(string $genres): array
