@@ -213,6 +213,11 @@ class TestController extends AbstractController
         $em->persist($newEmprunt);
         $em->flush();
 
+        //mise à jour d'un emprunt
+        $empruntId3 = $repositoryEmprunt->find(3);
+        $empruntId3->setDateRetour(new DateTime('2020-05-01 10:00:00'));
+        $em->flush();
+
 
         
         
