@@ -128,7 +128,6 @@ class TestController extends AbstractController
         $repositoryEmprunteur = $em->getRepository(Emprunteur::class);
         $repositoryUser = $em->getRepository(User::class);
 
-
         //liste des emprunteurs, triés par nom et prenom
         $emprunteurs = $repositoryEmprunteur->findAllEmprunteurOrderByNameAndFirstName();
 
@@ -151,9 +150,7 @@ class TestController extends AbstractController
         $date = new DateTime('2021-03-01');
         $emprunteursBeforeDate = $repositoryEmprunteur->findEmprunteurByDateCreatedAt($date);
 
-
         $title = "test des emprunteurs";
-
 
         return $this->render('test/emprunteur.html.twig', [
             'controller_name' => 'TestController',

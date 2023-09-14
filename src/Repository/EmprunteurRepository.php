@@ -23,54 +23,15 @@ class EmprunteurRepository extends ServiceEntityRepository
         parent::__construct($registry, Emprunteur::class);
     }
 
-//    /**
-//     * @return Emprunteur[] Returns an array of Emprunteur objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Emprunteur
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
-
-// /**
-//      * @return Emprunteur[] Returns an array of User objects
-//      */
-//     public function findAllEmprunteurOrderByNameAndFirstName(): array
-//     {
-//         return $this->createQueryBuilder('e')
-//             ->andWhere('e.nom IS NOT null')
-//             ->orderBy('e.prenom', 'ASC')
-//             ->orderBy('e.nom', 'ASC')
-//             ->getQuery()
-//             ->getResult();
-//     }
-
-/**
-     * @return Emprunteur[] Returns an array of User objects
+    /**
+     * This Method return all emprunteur ordered by lastname and firstname
+     * @return Emprunteur[] Returns an array of Emprunteur objects
      */
     public function findAllEmprunteurOrderByNameAndFirstName(): array
     {
         return $this->createQueryBuilder('e')
             ->select('e')
-            ->orderBy('e.prenom', 'ASC')
-            ->orderBy('e.nom', 'ASC')
+            ->orderBy('e.nom, e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -86,13 +47,12 @@ class EmprunteurRepository extends ServiceEntityRepository
             ->andWhere('e.nom LIKE :keyword')
             ->orWhere('e.prenom LIKE :keyword')
             ->setParameter('keyword', "%$keyword%")
-            ->orderBy('e.prenom', 'ASC')
-            ->orderBy('e.nom', 'ASC')
+            ->orderBy('e.nom, e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
-     /**
+    /**
      * This method finds all Emprunteur containing a keyword anywhere in the tel number
      * @param string $keyword The keyword to search for
      * @return Emprunteur[] Returns an array of Emprunteur objects
@@ -102,32 +62,24 @@ class EmprunteurRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->andWhere('e.tel LIKE :keyword')
             ->setParameter('keyword', "%$keyword%")
-            ->orderBy('e.prenom', 'ASC')
-            ->orderBy('e.nom', 'ASC')
+            ->orderBy('e.nom, e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
-     /**
-     * This method finds all Emprunteur created before a date
+    /**
+     * This method finds all Emprunteur created before a specific date
      * @param DateTime $date The date to search for
      * @return Emprunteur[] Returns an array of Emprunteur objects
      */
     public function findEmprunteurByDateCreatedAt(DateTime $date): array
     {
-        
         return $this->createQueryBuilder('e')
             ->select('e')
             ->Where('e.createdAt < :date')
             ->setParameter('date', $date)
-            ->orderBy('e.prenom', 'ASC')
-            ->orderBy('e.nom', 'ASC')
+            ->orderBy('e.nom, e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
-
-   
-
-
-
 }
