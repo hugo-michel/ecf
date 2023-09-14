@@ -201,6 +201,20 @@ class TestController extends AbstractController
 
         //les données de l'emprunt relié au livre dont l'id est `3`
         $dataEmpruntLivreId3 = $repositoryEmprunt->findEmpruntDataByLivreId(3);
+
+        //création d'un nouvel emprunt
+        $newEmprunt = new Emprunt();
+        $newEmprunt->setDateEmprunt(new DateTime('2020-12-01 16:00:00'));
+        $newEmprunt->setDateRetour(null);
+        $emprunteurId4 = $em->getRepository(Emprunteur::class)->find(1);
+        $newEmprunt->setEmprunteur($emprunteurId4);
+        $livreId1 = $em->getRepository(Livre::class)->find(1);
+        $newEmprunt->setLivre($livreId1);
+        $em->persist($newEmprunt);
+        $em->flush();
+
+
+        
         
 
 
