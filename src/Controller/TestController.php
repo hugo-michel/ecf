@@ -10,7 +10,6 @@ use App\Entity\Emprunt;
 use App\Entity\Emprunteur;
 use App\Entity\Genre;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\ORM\Repository\RepositoryFactory;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +30,7 @@ class TestController extends AbstractController
         //trouve les datas de l'utilisateur 1
         $user1 = $repositoryUser->find(1);
 
-        //trouve user dont email est foo.foo@example.com
+        //trouve user dont l'email est foo.foo@example.com
         $userFooFoo = $repositoryUser->findByEmail("foo.foo@example.com");
 
         //trouver tous les user dont le role est ROLE_USER
@@ -41,7 +40,6 @@ class TestController extends AbstractController
         $userInactifs = $repositoryUser->falseEnabled();
 
         $title = "test des users";
-
 
         return $this->render('test/user.html.twig', [
             'controller_name' => 'TestController',

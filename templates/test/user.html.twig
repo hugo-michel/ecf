@@ -7,7 +7,7 @@
 <h2> liste des users par email, trié par email alphabetique </h2>
 
 {% for user in users %}
-<p> {{ user.email }} </p>
+<p> id : {{ user.id }}, {{ user.email }} </p>
 
 {% endfor %}
 
@@ -29,16 +29,14 @@
 
 <h2> liste des users qui ont le ROLE_USER, trié par email alphabetique</h2>
 {% for user in roleUser %}
-<p> {{ user.email }} </p>
+<p> id : {{ user.id }}, {{ user.email }} </p>
 
 {% endfor %}
 
 <h2> liste des users inactifs </h2>
 {% for user in userInactifs %}
-<p> {{ user.email }} </p>
+<p> id : {{ user.id }}, {{ user.email }} </p>
 
 {% endfor %}
-
-
 
 {% endblock %}

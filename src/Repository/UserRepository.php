@@ -40,42 +40,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
-    //    /**
-    //     * @return User[] Returns an array of User objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('u.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
     /**
+     * This method find all user ordered by email
      * @return User[] Returns an array of User objects
      */
     public function findAllUsersOrderByMail(): array
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.email IS NOT null')
+            ->select('u')
             ->orderBy('u.email', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
-    // public function emailFooFOo(): array
-    // {
-    //     return $this->createQueryBuilder('u')
-    //         ->andWhere('u.email LIKE :email')
-    //         ->setParameter('email', '%foo.foo@example.com%')
-    //         ->getQuery()
-    //         ->getResult();
-    // }
-
+    /**
+     * This method find a user with a specific email
+     * @param string $email The email to search for
+     * @return User[] Returns an array of User objects
+     */
     public function findByEmail(string $email): array
     {
         return $this->createQueryBuilder('u')
@@ -85,6 +67,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getResult();
     }
 
+    /**
+     * This method find all users whose role is ROLE_USER ordered by email
+     * @return User[] Returns an array of User objects
+     */
     public function allRoleUser(): array
     {
         return $this->createQueryBuilder('u')
@@ -95,6 +81,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getResult();
     }
 
+     /**
+     * This method find all non active users
+     * @return User[] Returns an array of User objects
+     */
     public function falseEnabled(): array
     {
         return $this->createQueryBuilder('u')
@@ -104,15 +94,4 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getResult();
     }
-
-
-    //    public function findOneBySomeField($value): ?User
-    //    {
-    //        return $this->createQueryBuilder('u')
-    //            ->andWhere('u.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
