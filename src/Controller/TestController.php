@@ -218,8 +218,13 @@ class TestController extends AbstractController
         $empruntId3->setDateRetour(new DateTime('2020-05-01 10:00:00'));
         $em->flush();
 
-
+        //requete de suppression
+        $empruntId42 = $repositoryEmprunt->find(42);
         
+        if($empruntId42) {
+            $em->remove($empruntId42);
+            $em->flush();
+        }        
         
 
 
