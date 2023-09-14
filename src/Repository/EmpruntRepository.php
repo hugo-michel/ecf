@@ -106,6 +106,35 @@ class EmpruntRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+     /**
+     * This method finds all Emprunt with no return date
+     * @return Emprunteur[] Returns an array of Emprunt objects
+     */
+    public function findAllNonReturnEmprunt(): array
+    {
+        
+        return $this->createQueryBuilder('e')
+            ->select('e')
+            ->Where('e.dateRetour IS null')
+            ->orderBy('e.dateEmprunt', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+          /**
+     * @param Value $value The value of LivreId to search for
+     * @return Emprunt[] Returns an array of Emprunt objects
+     */
+    public function findEmpruntDataByLivreId($value): array
+    {
+        return $this->createQueryBuilder('e')
+            ->select('e')
+            ->where('e.livre = :value')
+            ->setParameter('value', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
 }

@@ -195,6 +195,12 @@ class TestController extends AbstractController
         //triée par ordre **décroissant** de date de rendretour (le plus récent en premier)
         $ListeLast10RetourEmprunt = $repositoryEmprunt->findLastEmpruntRetour(10);
 
+        // la liste des emprunts qui n'ont pas encore été retournés (c-à-d dont la date de retour est nulle), 
+        //triée par ordre **croissant** de date d'emprunt (le plus ancien en premier)
+        $listeEmpruntNoReturnDate = $repositoryEmprunt->findAllNonReturnEmprunt();
+
+        //les données de l'emprunt relié au livre dont l'id est `3`
+        $dataEmpruntLivreId3 = $repositoryEmprunt->findEmpruntDataByLivreId(3);
         
 
 
@@ -207,6 +213,8 @@ class TestController extends AbstractController
             'empruntId2' => $empruntId2,   
             'empruntLivreId3' => $empruntLivreId3,
             'ListeLast10RetourEmprunt' => $ListeLast10RetourEmprunt,
+            'listeEmpruntNoReturnDate' => $listeEmpruntNoReturnDate,
+            'dataEmpruntLivreId3' => $dataEmpruntLivreId3,
         ]);
     }
 }

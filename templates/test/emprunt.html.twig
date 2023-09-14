@@ -36,4 +36,21 @@
 
 {% endfor %}
 
+<h2> la liste des emprunts qui n'ont pas encore été retournés (c-à-d dont la date de retour est nulle), triée par ordre **croissant** de date d'emprunt (le plus ancien en premier)</h2>
+
+{% for emprunt in listeEmpruntNoReturnDate %}
+
+<p> id emprunt : {{emprunt.id}}, date retour :  {{emprunt.dateEmprunt|date('d/m/Y')}} </p>
+
+{% endfor %}
+
+<h2>les données de l'emprunt relié au livre dont l'id est `3`</h2>
+
+{% for emprunt in dataEmpruntLivreId3 %}
+
+
+<p> id de l'emprunt : {{ emprunt.id }} , date emprunt : {{emprunt.dateEmprunt|date('d/m/Y')}} , date retour : {% if emprunt.dateRetour %}{{emprunt.dateRetour|date('d/m/Y')}}{% endif %} , emprunteur : {{emprunt.emprunteur.nom}} {{emprunt.emprunteur.prenom}}</p>
+
+{% endfor %}
+
 {% endblock %}
