@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<p> Titre {{ livre.titre }}</p>
+<p> Année Edition {{ livre.anneeEdition }} </p>
+<p> Nombre de pages : {{ livre.nombrePages }}</p>
+<p> Code ISBN {{ livre.codeIsbn }} </p>
+<p>Auteur : {{ livre.auteur }} </p>
+{% for genre in genres %}
+    <p> {{ genre.nom }} </p>
+{% endfor %}
+
+
+{% endblock %}
