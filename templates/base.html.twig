@@ -28,6 +28,7 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Acceuil</a>
                             </li>
+                            {% if is_granted('ROLE_ADMIN')%}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_admin_auteur_index') }}">Auteur</a>
                             </li>
@@ -45,15 +46,16 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_admin_user_index') }}">User</a>
-                            </li>                      
+                            </li>      
+                            {% endif %}                
                         </ul>     
                         {% if app.user %}
                             <div>
-                                Bonjour {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Deconnexion</a>
+                                Bonjour {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
                             </div>
                         {% else %}
                             <div>
-                                <a href="{{ path('app_login') }}">Connexion</a>
+                                <a href="{{ path('app_login') }}">Login</a>
                             </div>
                         {% endif %}     
                     </div>

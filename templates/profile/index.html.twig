@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+
+<h1>Liste des emprunts en cours de {{ emprunteur.nom}} {{ emprunteur.prenom}} </h1>
+
+{% for emprunt in emprunts %}
+
+    <p>id : {{emprunt.id}} , date emprunt : {{ emprunt.dateEmprunt|date('Y-m-d H:i:s') }} , titre du livre : {{ emprunt.livre.titre }}</p>
+    
+
+{% endfor %}
+
+{% endblock %}
