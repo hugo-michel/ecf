@@ -4,14 +4,42 @@
 
 {% block body %}
 
-<p> Titre {{ livre.titre }}</p>
-<p> Année Edition {{ livre.anneeEdition }} </p>
-<p> Nombre de pages : {{ livre.nombrePages }}</p>
-<p> Code ISBN {{ livre.codeIsbn }} </p>
-<p>Auteur : {{ livre.auteur }} </p>
-{% for genre in genres %}
-    <p> {{ genre.nom }} </p>
-{% endfor %}
+    <h1>Livre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ livre.id }}</td>
+            </tr>
+            <tr>
+                <th>Auteur</th>
+                <td>{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ livre.titre }}</td>
+            </tr>
+            <tr>
+                <th>AnneeEdition</th>
+                <td>{{ livre.anneeEdition }}</td>
+            </tr>
+            <tr>
+                <th>NombrePages</th>
+                <td>{{ livre.nombrePages }}</td>
+            </tr>
+            <tr>
+                <th>CodeIsbn</th>
+                <td>{{ livre.codeIsbn }}</td>
+            </tr>
+            <tr>
+            <th>Genres</th>
+                <td>{% for genre in genres %} {{ genre.nom }} {% if not loop.last %}, {% endif %} {% endfor %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_home') }}">back to list</a>
 
 
 {% endblock %}

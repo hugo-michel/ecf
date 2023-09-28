@@ -4,23 +4,30 @@
 
 {% block body %}
 
-<div class="container">
-    
-    <div class="row">
-        <div class="col">
-            <h2>Livres</h2>
-            {% if livres %}
-                <ul>
-                    {% for livre in livres %}
-                        <li><a href="{{ path('app_front_livre_show', {id: livre.id}) }}">{{ livre.titre }}</a>, Auteur : {{ livre.auteur }}, Année edition {{ livre.anneeEdition }}, Nombre pages : {{ livre.nombrePages }} </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-    </div>
+<h2>Livres</h2>
 
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Année Edition</th>
+            <th>Nombre de pages</th>
+        </tr>    
+    </thead>
+    <tbody>
+        {% if livres %}
+            {% for livre in livres %}
+            <tr>
+                <td><a href="{{ path('app_front_livre_show', {id: livre.id}) }}">{{ livre.titre }}</a></td>
+                <td>{{ livre.auteur }}</td>
+                <td>{{ livre.anneeEdition }}</td>
+                <td>{{ livre.nombrePages }}</td>
+                </tr>
+            {% endfor %}
 
-
+        {% endif %}
+    </tbody>
+</table>
 
 {% endblock %}
