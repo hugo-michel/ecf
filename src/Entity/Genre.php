@@ -99,6 +99,6 @@ class Genre
 
     public function __toString()
     {
-        return "{$this->getNom()} (id {$this->getId()}";
+        return "{$this->getNom()}";
     }
 }

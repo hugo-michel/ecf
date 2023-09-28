@@ -31,8 +31,15 @@
                 <th>CodeIsbn</th>
                 <td>{{ livre.codeIsbn }}</td>
             </tr>
+            <tr>
+            <th>Genres</th>
+                <td>{% for genre in genres %} {{ genre.nom }} {% if not loop.last %}, {% endif %} {% endfor %}</td>
+            </tr>
         </tbody>
     </table>
+
+
+
 
     <a href="{{ path('app_admin_livre_index') }}">back to list</a>
 

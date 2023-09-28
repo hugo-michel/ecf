@@ -45,8 +45,12 @@ class LivreController extends AbstractController
     #[Route('/{id}', name: 'app_admin_livre_show', methods: ['GET'])]
     public function show(Livre $livre): Response
     {
+        $genres = $livre->getGenres();
+
         return $this->render('admin/livre/show.html.twig', [
             'livre' => $livre,
+            'genres' => $genres,
+            
         ]);
     }
 
