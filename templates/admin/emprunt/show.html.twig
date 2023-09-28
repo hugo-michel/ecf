@@ -20,16 +20,12 @@
                 <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
-                <td>{{ emprunt.createdAt ? emprunt.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Emprunteur</th>
+                <td>{{ emprunt.emprunteur.prenom }} {{ emprunt.emprunteur.nom }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
-                <td>{{ emprunt.updatedAt ? emprunt.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DeletedAt</th>
-                <td>{{ emprunt.deletedAt ? emprunt.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Livre</th>
+                <td>{{ emprunt.livre.titre }}</td>
             </tr>
         </tbody>
     </table>

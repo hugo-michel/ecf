@@ -12,6 +12,10 @@
                 <td>{{ livre.id }}</td>
             </tr>
             <tr>
+                <th>Auteur</th>
+                <td>{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</td>
+            </tr>
+            <tr>
                 <th>Titre</th>
                 <td>{{ livre.titre }}</td>
             </tr>
@@ -26,18 +30,6 @@
             <tr>
                 <th>CodeIsbn</th>
                 <td>{{ livre.codeIsbn }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ livre.createdAt ? livre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ livre.updatedAt ? livre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DeletedAt</th>
-                <td>{{ livre.deletedAt ? livre.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

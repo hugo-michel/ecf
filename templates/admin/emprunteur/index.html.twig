@@ -5,6 +5,9 @@
 {% block body %}
     <h1>Emprunteur index</h1>
 
+    <a href="{{ path('app_admin_emprunteur_new') }}">Create new</a>
+
+
     <table class="table">
         <thead>
             <tr>
@@ -12,9 +15,6 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Tel</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>DeletedAt</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,9 +25,6 @@
                 <td>{{ emprunteur.nom }}</td>
                 <td>{{ emprunteur.prenom }}</td>
                 <td>{{ emprunteur.tel }}</td>
-                <td>{{ emprunteur.createdAt ? emprunteur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ emprunteur.updatedAt ? emprunteur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ emprunteur.deletedAt ? emprunteur.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_admin_emprunteur_show', {'id': emprunteur.id}) }}">show</a>
                     <a href="{{ path('app_admin_emprunteur_edit', {'id': emprunteur.id}) }}">edit</a>
@@ -41,5 +38,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_emprunteur_new') }}">Create new</a>
 {% endblock %}

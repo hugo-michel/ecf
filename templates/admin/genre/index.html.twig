@@ -5,15 +5,14 @@
 {% block body %}
     <h1>Genre index</h1>
 
+    <a href="{{ path('app_admin_genre_new') }}">Create new</a>
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>DeletedAt</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,9 +22,6 @@
                 <td>{{ genre.id }}</td>
                 <td>{{ genre.nom }}</td>
                 <td>{{ genre.description }}</td>
-                <td>{{ genre.createdAt ? genre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ genre.updatedAt ? genre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ genre.deletedAt ? genre.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('app_admin_genre_show', {'id': genre.id}) }}">show</a>
                     <a href="{{ path('app_admin_genre_edit', {'id': genre.id}) }}">edit</a>
@@ -39,5 +35,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_genre_new') }}">Create new</a>
 {% endblock %}

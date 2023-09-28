@@ -5,15 +5,16 @@
 {% block body %}
     <h1>Liste des Emprunts</h1>
 
+    <a href="{{ path('app_admin_emprunt_new') }}">Create new</a>
+
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>DateEmprunt</th>
                 <th>DateRetour</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>DeletedAt</th>
+                <th>Emprunteur</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,9 +24,7 @@
                 <td>{{ emprunt.id }}</td>
                 <td>{{ emprunt.dateEmprunt ? emprunt.dateEmprunt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ emprunt.createdAt ? emprunt.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ emprunt.updatedAt ? emprunt.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ emprunt.deletedAt ? emprunt.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ emprunt.emprunteur.prenom }} {{ emprunt.emprunteur.nom }}</td>
                 <td>
                     <a href="{{ path('app_admin_emprunt_show', {'id': emprunt.id}) }}">show</a>
                     <a href="{{ path('app_admin_emprunt_edit', {'id': emprunt.id}) }}">edit</a>
@@ -39,5 +38,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_admin_emprunt_new') }}">Create new</a>
 {% endblock %}

@@ -10,7 +10,12 @@
 
     <p>id : {{emprunt.id}} , date emprunt : {{ emprunt.dateEmprunt|date('Y-m-d H:i:s') }} , titre du livre : {{ emprunt.livre.titre }}</p>
     
-
 {% endfor %}
+
+{% if emprunts is empty %}
+
+    <p>Vous n'avez aucun emprunt en cours</p>
+
+{% endif %}
 
 {% endblock %}
