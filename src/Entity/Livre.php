@@ -191,6 +191,6 @@ class Livre
 
     public function __toString()
     {
-        return "{$this->getTitre()} id {$this->getId()}";
+        return "{$this->getTitre()}";
     }
 }

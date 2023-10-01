@@ -11,6 +11,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
+#[Assert\Cascade]
 #[Gedmo\SoftDeleteable(fieldName: "deletedAt", timeAware: false, hardDelete: false)]
 #[ORM\Entity(repositoryClass: EmprunteurRepository::class)]
 class Emprunteur
@@ -37,7 +38,7 @@ class Emprunteur
     #[ORM\Column(length: 190)]
     private ?string $tel = null;
 
-    #[ORM\OneToMany(mappedBy: 'emprunteur', targetEntity: Emprunt::class)]
+    #[ORM\OneToMany(mappedBy: 'emprunteur', targetEntity: Emprunt::class, cascade: ['persist', 'remove'])]
     private Collection $emprunts;
 
     #[ORM\OneToOne(inversedBy: 'emprunteur', cascade: ['persist', 'remove'])]
@@ -133,6 +134,6 @@ class Emprunteur
 
     public function __toString()
     {
-        return "{$this->getNom()} {$this->getPrenom()} id {$this->getId()}";
+        return "{$this->getNom()} {$this->getPrenom()}";
     }
 }
