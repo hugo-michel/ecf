@@ -13,6 +13,7 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[UniqueEntity('codeIsbn')]
+#[Assert\Cascade]
 #[Gedmo\SoftDeleteable(fieldName: "deletedAt", timeAware: false, hardDelete: false)]
 #[ORM\Entity(repositoryClass: LivreRepository::class)]
 class Livre
@@ -56,7 +57,7 @@ class Livre
     #[ORM\JoinColumn(nullable: false)]
     private ?Auteur $auteur = null;
 
-    #[ORM\OneToMany(mappedBy: 'livre', targetEntity: Emprunt::class)]
+    #[ORM\OneToMany(mappedBy: 'livre', targetEntity: Emprunt::class, cascade: ['persist', 'remove'])]
     private Collection $emprunts;
 
     #[Assert\Count(min: 1)]
