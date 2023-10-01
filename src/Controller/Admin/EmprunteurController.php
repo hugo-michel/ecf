@@ -28,8 +28,10 @@ class EmprunteurController extends AbstractController
         $emprunteur = new Emprunteur();
         $form = $this->createForm(EmprunteurType::class, $emprunteur);
         $form->handleRequest($request);
+        $user = $emprunteur->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['ROLE_USER']);
             $entityManager->persist($emprunteur);
             $entityManager->flush();
 
@@ -71,7 +73,7 @@ class EmprunteurController extends AbstractController
     #[Route('/{id}', name: 'app_admin_emprunteur_delete', methods: ['POST'])]
     public function delete(Request $request, Emprunteur $emprunteur, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$emprunteur->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $emprunteur->getId(), $request->request->get('_token'))) {
             $entityManager->remove($emprunteur);
             $entityManager->flush();
         }
