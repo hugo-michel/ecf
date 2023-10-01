@@ -30,6 +30,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setRoles(['ROLE_ADMIN']);
             $entityManager->persist($user);
             $entityManager->flush();
 
