@@ -15,7 +15,9 @@ class EmprunteurType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('tel')
-            ->add('user')
+            ->add('user', UserType::class, [
+                'label' => false,
+            ])
         ;
     }
 

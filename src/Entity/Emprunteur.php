@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\EmprunteurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -22,12 +23,17 @@ class Emprunteur
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 190)]
     #[ORM\Column(length: 190)]
     private ?string $nom = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 1, max: 190)]
     #[ORM\Column(length: 190)]
     private ?string $prenom = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(length: 190)]
     private ?string $tel = null;
 

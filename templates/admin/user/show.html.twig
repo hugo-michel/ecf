@@ -17,7 +17,12 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+                <td>
+                {% for role in user.roles %}
+                    {{ role }}{{ loop.last ? "" : "," }}
+                {% endfor %}
+                </td>
             </tr>
             <tr>
                 <th>Enabled</th>
