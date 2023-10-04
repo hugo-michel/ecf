@@ -44,7 +44,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * This method find all user ordered by email
      * @return User[] Returns an array of User objects
      */
-    public function findAllUsersOrderByMail(): array
+    public function findAllOrderByMail(): array
     {
         return $this->createQueryBuilder('u')
             ->select('u')
@@ -58,13 +58,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
      * @param string $email The email to search for
      * @return User[] Returns an array of User objects
      */
-    public function findByEmail(string $email): array
+    public function findByEmail(string $email): ?User 
     {
         return $this->createQueryBuilder('u')
-            ->setParameter('email', "%$email%")
-            ->andWhere('u.email LIKE :email')
+            ->setParameter('email', $email)
+            ->andWhere('u.email = :email')
             ->getQuery()
-            ->getResult();
+            ->getOneOrNullResult();
     }
 
     /**

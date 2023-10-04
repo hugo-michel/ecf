@@ -19,13 +19,14 @@
 
 <h2> données de l'utilisateur qui a le mail foo.foo@example.com</h2>
 
-{% for user in userFooFoo %}
+{% if userFooFoo is not null %}
 
-<p> id : {{user.id}} </p>
-<p> enabled : {{user.enabled}} </p>
-<p> role : {{user.roles[0]}} <p/>
- 
-{% endfor %}
+<p> id : {{userFooFoo.id}} </p>
+<p> enabled : {{userFooFoo.enabled}} </p>
+<p> role : {{userFooFoo.roles[0]}} <p/>
+
+{% endif %}
+
 
 <h2> liste des users qui ont le ROLE_USER, trié par email alphabetique</h2>
 {% for user in roleUser %}

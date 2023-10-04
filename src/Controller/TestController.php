@@ -25,13 +25,13 @@ class TestController extends AbstractController
         $repositoryUser = $em->getRepository(User::class);
 
         //fonction all user order by email
-        $users = $repositoryUser->findAllUsersOrderByMail();
+        $users = $repositoryUser->findAllOrderByMail();
 
         //trouve les datas de l'utilisateur 1
         $user1 = $repositoryUser->find(1);
 
         //trouve user dont l'email est foo.foo@example.com
-        $userFooFoo = $repositoryUser->findByEmail("foo.foo@example.com");
+        $userFooFoo = $repositoryUser->findByEmail('foo.foo@example.com');
 
         //trouver tous les user dont le role est ROLE_USER
         $roleUser = $repositoryUser->allRoleUser();
