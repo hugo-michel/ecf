@@ -31,7 +31,8 @@ class EmprunteurRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('e')
             ->select('e')
-            ->orderBy('e.nom, e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->addOrderBy('e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -47,7 +48,8 @@ class EmprunteurRepository extends ServiceEntityRepository
             ->andWhere('e.nom LIKE :keyword')
             ->orWhere('e.prenom LIKE :keyword')
             ->setParameter('keyword', "%$keyword%")
-            ->orderBy('e.nom, e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->addOrderBy('e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -62,7 +64,8 @@ class EmprunteurRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->andWhere('e.tel LIKE :keyword')
             ->setParameter('keyword', "%$keyword%")
-            ->orderBy('e.nom, e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->addOrderBy('e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -78,7 +81,8 @@ class EmprunteurRepository extends ServiceEntityRepository
             ->select('e')
             ->Where('e.createdAt < :date')
             ->setParameter('date', $date)
-            ->orderBy('e.nom, e.prenom', 'ASC')
+            ->orderBy('e.nom', 'ASC')
+            ->addOrderBy('e.prenom', 'ASC')
             ->getQuery()
             ->getResult();
     }
