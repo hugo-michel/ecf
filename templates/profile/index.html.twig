@@ -4,12 +4,13 @@
 
 {% block body %}
 
-<h1>Liste des emprunts en cours de {{ emprunteur.nom}} {{ emprunteur.prenom}} </h1>
+<h1>Liste des emprunts de {{ emprunteur.nom}} {{ emprunteur.prenom}} </h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>Date d'emprunt</th>
+            <th>Date Retour</th>
             <th>titre du livre</th>
             <th>Auteur</th>
         </tr>    
@@ -18,6 +19,7 @@
         {% for emprunt in emprunts %}
             <tr>
                 <td>{{ emprunt.dateEmprunt|date('Y-m-d H:i:s') }}</td>
+                <td>{{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d H:i:s') : "" }}</td>
                 <td>{{ emprunt.livre.titre }}</td>
                 <td>{{ emprunt.livre.auteur.prenom }} {{ emprunt.livre.auteur.nom }}</td>
             </tr>
