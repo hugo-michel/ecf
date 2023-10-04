@@ -34,7 +34,7 @@ class TestController extends AbstractController
         $userFooFoo = $repositoryUser->findByEmail('foo.foo@example.com');
 
         //trouver tous les user dont le role est ROLE_USER
-        $roleUser = $repositoryUser->allRoleUser();
+        $roleUsers = $repositoryUser->allRoleUser();
 
         //trouver tous les users inactifs, triés par email
         $userInactifs = $repositoryUser->falseEnabled();
@@ -47,7 +47,7 @@ class TestController extends AbstractController
             'users' => $users,
             'user1' => $user1,
             'userFooFoo' => $userFooFoo,
-            'roleUser' => $roleUser,
+            'roleUsers' => $roleUsers,
             'userInactifs' => $userInactifs,
         ]);
     }
